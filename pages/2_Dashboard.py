@@ -189,19 +189,8 @@ if analyze:
 
     trend = "Increasing 📈" if filtered[metric].iloc[-1] > filtered[metric].iloc[0] else "Decreasing 📉"
 
-    pdf = generate_pdf(
-        fig,
-        sector,
-        state,
-        district,
-        start_year,
-        end_year,
-        metric,
-        avg,
-        mx,
-        mn,
-        trend
+    pdf_buffer = generate_pdf(
+        fig, sector, state, district, start_year, end_year, metric, avg, mx, mn, trend
     )
 
-
-    export_chart_to_pdf(fig, "Dashboard Chart Report")
+    export_chart_to_pdf(pdf_buffer, "Dashboard Chart Report")
