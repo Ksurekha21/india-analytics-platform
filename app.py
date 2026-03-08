@@ -8,6 +8,7 @@ st.set_page_config(
 )
 
 # hide default sidebar navigation
+
 st.markdown("""
 <style>
 [data-testid="stSidebarNav"] {display: none;}
