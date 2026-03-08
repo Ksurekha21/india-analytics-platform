@@ -3,7 +3,7 @@ import streamlit as st
 import streamlit as st
 
 st.set_page_config(
-    page_title="India Analytics Platform",
+    page_title="India Data Analytics Platform 📊",
     layout="wide"
 )
 
@@ -18,7 +18,7 @@ with open("assets/style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
-st.sidebar.title("🇮🇳 India Analytics")
+st.sidebar.title("India Analytics")
 
 st.sidebar.page_link("app.py", label="🏠 Home")
 st.sidebar.page_link("pages/1_Sectors.py", label="📊 Sectors")
@@ -41,7 +41,7 @@ st.sidebar.markdown("---")
 col1, col2 = st.columns([3,2])
 
 with col1:
-    st.title("🇮🇳 India Analytics Platform")
+    st.title("India Data Analytics Platform 📊")
     st.write("Explore India's Data with AI Powered Analytics")
 
     st.write("")
