@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from utils.filters import get_filters
 from utils.charts import create_chart
-
+from utils.export_utils import chart_download_button, export_chart_to_pdf
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from io import BytesIO
@@ -152,11 +152,7 @@ if analyze:
     col1,col2,col3 = st.columns([3,1,3])
 
     with col2:
-        st.download_button(
-            "Download Chart",
-            fig.to_image(format="png"),
-            "chart.png"
-        )
+        chart_download_button(fig)
 
         st.markdown("<br>", unsafe_allow_html=True)
 
@@ -207,9 +203,5 @@ if analyze:
         trend
     )
 
-    st.download_button(
-        label="Export Dashboard as PDF",
-        data=pdf,
-        file_name=f"{state}_{district}_dashboard.pdf",
-        mime="application/pdf"
-    )
+
+    export_chart_to_pdf(fig, "Dashboard Chart Report")

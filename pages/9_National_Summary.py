@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from utils.export_utils import chart_download_button, export_chart_to_pdf
 
 st.set_page_config(page_title="National Summary", layout="wide")
 
@@ -393,8 +394,4 @@ c.save()
 
 pdf_buffer.seek(0)
 
-st.download_button(
-    "Download National Summary Report (PDF)",
-    pdf_buffer,
-    f"{sector}_national_summary_report.pdf"
-)
+export_chart_to_pdf(pdf_buffer, "National Summary Report")

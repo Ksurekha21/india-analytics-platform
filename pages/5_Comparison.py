@@ -5,6 +5,7 @@ import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
 from utils.filters import get_filters
+from utils.export_utils import chart_download_button, export_chart_to_pdf
 
 st.set_page_config(page_title="Comparison", layout="wide")
 with open("assets/style.css") as f:
@@ -84,11 +85,7 @@ if analyze:
 
 
     # Download chart
-    st.download_button(
-        "Download State Comparison Chart",
-        fig_state.to_image(format="png"),
-        "state_comparison_chart.png"
-    )
+    chart_download_button(fig_state)
 
     # -------- Comparison Table --------
 
@@ -149,11 +146,7 @@ if analyze:
 
     st.plotly_chart(fig_district,use_container_width=True)
 
-    st.download_button(
-        "Download District Comparison Chart",
-        fig_district.to_image(format="png"),
-        "district_comparison_chart.png"
-    )
+    chart_download_button(fig_district)
 # -------- Comparison Table --------
 
     st.header("Comparison Table")
@@ -257,8 +250,4 @@ if analyze:
 
     pdf_buffer.seek(0)
 
-    st.download_button(
-        "Download Comparison Report (PDF)",
-        pdf_buffer,
-        f"{sector}_{metric}_comparison_report.pdf"
-    )
+    export_chart_to_pdf(pdf_buffer, "Comparison Report")

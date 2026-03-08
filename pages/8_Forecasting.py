@@ -5,6 +5,7 @@ import io
 from prophet import Prophet
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
+from utils.export_utils import chart_download_button, export_chart_to_pdf
 
 st.set_page_config(page_title="Forecasting", layout="wide")
 
@@ -136,11 +137,7 @@ if analyze:
     # -----------------------------
     chart_image = fig.to_image(format="png")
 
-    st.download_button(
-        "Download Forecast Chart",
-        chart_image,
-        "forecast_chart.png"
-    )
+    chart_download_button(fig)
 
 
     st.header("Forecast Table")
@@ -270,8 +267,4 @@ if analyze:
 
     pdf_buffer.seek(0)
 
-    st.download_button(
-        "Download Forecast Report (PDF)",
-        pdf_buffer,
-        f"{sector}_forecast_report.pdf"
-    )
+    export_chart_to_pdf(pdf_buffer, "Forecast Report")

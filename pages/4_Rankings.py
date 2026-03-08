@@ -6,6 +6,7 @@ from utils.filters import get_filters
 import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
+from utils.export_utils import chart_download_button, export_chart_to_pdf
 
 
 
@@ -317,8 +318,4 @@ c.save()
 
 pdf_buffer.seek(0)
 
-st.download_button(
-    "Download Rankings & Growth Report",
-    pdf_buffer,
-    f"{sector}_{metric}_ranking_growth_report.pdf"
-)
+export_chart_to_pdf(pdf_buffer, "Rankings & Growth Analysis Report")

@@ -5,6 +5,7 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
 from utils.charts import create_chart
 from utils.filters import get_filters
+from utils.export_utils import chart_download_button, export_chart_to_pdf
 
 st.set_page_config(
     page_title="All Charts",
@@ -58,14 +59,9 @@ if analyze:
         col1.subheader(chart1)
         col1.plotly_chart(fig1,use_container_width=True)
 
-        img1 = fig1.to_image(format="png")
-        chart_images.append(img1)
+        
 
-        col1.download_button(
-        f"Download {chart1}",
-        img1,
-        f"{chart1}.png"
-        )
+        chart_download_button(fig1)
 
         if i+1 < len(chart_list):
 
@@ -74,16 +70,9 @@ if analyze:
 
             col2.subheader(chart2)
             col2.plotly_chart(fig2,use_container_width=True)
+            
 
-            img2 = fig2.to_image(format="png")
-            chart_images.append(img2)
-
-            col2.download_button(
-            f"Download {chart2}",
-            img2,
-            f"{chart2}.png"
-            )
-
+            chart_download_button(fig2)
     # ---------- PDF EXPORT ----------
     st.header("Download All Charts")
 
@@ -147,8 +136,4 @@ if analyze:
 
     pdf_buffer.seek(0)
 
-    st.download_button(
-        "Download All Charts as PDF",
-        pdf_buffer,
-        f"{state}_{district}_all_charts.pdf"
-    )
+    export_chart_to_pdf(pdf_buffer, "All Charts Report")

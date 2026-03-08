@@ -6,6 +6,7 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
 
 from utils.filters import get_filters
+from utils.export_utils import chart_download_button, export_chart_to_pdf
 
 st.set_page_config(page_title="District Analytics", layout="wide")
 
@@ -263,8 +264,4 @@ if analyze:
 
     pdf_buffer.seek(0)
 
-    st.download_button(
-        "Download District Analytics Report",
-        pdf_buffer,
-        f"{district}_{metric}_district_analytics.pdf"
-    )
+    export_chart_to_pdf(pdf_buffer, "District Analytics Report")
