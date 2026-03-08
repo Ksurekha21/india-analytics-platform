@@ -1,0 +1,11 @@
+streamlit
+pandas
+plotly
+numpy
+groq
+scikit-learn
+reportlab
+pdfplumber
+pillow
+python-docx
+openpyxl

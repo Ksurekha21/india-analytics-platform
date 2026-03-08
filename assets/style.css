@@ -1,0 +1,154 @@
+/* ---------- APP BACKGROUND ---------- */
+
+[data-testid="stAppViewContainer"]{
+background:#f4f6f9;
+}
+
+
+/* ---------- SIDEBAR ---------- */
+
+/* SIDEBAR BACKGROUND */
+
+[data-testid="stSidebar"]{
+    background: #f8fafc;
+}
+
+
+/* FILTER TITLE */
+
+[data-testid="stSidebar"] h2{
+    color:#1e293b;
+    font-weight:600;
+}
+
+
+/* LABELS */
+
+[data-testid="stSidebar"] label{
+    color:#334155 !important;
+    font-size:14px;
+}
+
+
+/* INPUT BOXES */
+
+[data-testid="stSidebar"] .stSelectbox div{
+    background:white;
+    border-radius:8px;
+    border:1px solid #e2e8f0;
+}
+
+
+/* BUTTON */
+
+[data-testid="stSidebar"] .stButton button{
+    background:#2563eb;
+    color:white;
+    border-radius:8px;
+    height:40px;
+    font-weight:600;
+}
+
+[data-testid="stSidebar"] .stButton button:hover{
+    background:#1d4ed8;
+}
+
+
+/* ---------- KPI CARDS ---------- */
+
+.kpi-card{
+background:white;
+padding:25px;
+border-radius:12px;
+text-align:center;
+box-shadow:0px 3px 12px rgba(0,0,0,0.08);
+}
+
+.kpi-title{
+font-size:16px;
+color:#6b7280;
+}
+
+.kpi-value{
+font-size:28px;
+font-weight:600;
+color:#111827;
+}
+
+
+/* ---------- CHART CARD ---------- */
+
+.chart-card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0px 3px 12px rgba(0,0,0,0.08);
+margin-top:15px;
+}
+
+
+/* ---------- INSIGHTS CARD ---------- */
+
+.insight-card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0px 3px 12px rgba(0,0,0,0.08);
+margin-top:20px;
+}
+/* Hide Streamlit default pages navigation */
+
+/* sector buttons */
+
+.stButton button{
+height:60px;
+font-size:16px;
+border-radius:10px;
+border:1px solid #d1d5db;
+background:white;
+transition:0.2s;
+}
+
+.stButton button:hover{
+background:#f3f4f6;
+border-color:#9ca3af;
+}
+.stButton button{
+
+background:white;
+border:1px solid #d1d5db;
+border-radius:10px;
+
+height:45px;
+
+font-size:16px;
+
+transition:0.2s;
+}
+
+.stButton button:hover{
+
+background:#f3f4f6;
+border-color:#9ca3af;
+
+}
+/* REMOVE BLUE BUTTON STYLE */
+
+[data-testid="stSidebar"] .stButton button{
+    background: transparent;
+    color: #1f2937;
+    border: none;
+    text-align: left;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* HOVER EFFECT */
+
+[data-testid="stSidebar"] .stButton button:hover{
+    background: #f1f5f9;
+    color: #111827;
+}
