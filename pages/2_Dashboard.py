@@ -183,14 +183,8 @@ if analyze:
     st.markdown('</div>', unsafe_allow_html=True)
 
     # ---------- DOWNLOAD PDF ----------
-    avg = round(filtered[metric].mean(),2)
-    mx = round(filtered[metric].max(),2)
-    mn = round(filtered[metric].min(),2)
 
-    trend = "Increasing 📈" if filtered[metric].iloc[-1] > filtered[metric].iloc[0] else "Decreasing 📉"
-
-    pdf_buffer = generate_pdf(
-        fig, sector, state, district, start_year, end_year, metric, avg, mx, mn, trend
-    )
+    pdf_buffer = generate_pdf(fig)
+    
 
     export_chart_to_pdf(pdf_buffer, "Dashboard Chart Report")
