@@ -264,4 +264,9 @@ if analyze:
 
     pdf_buffer.seek(0)
 
-    export_chart_to_pdf(pdf_buffer, "District Analytics Report")
+    st.download_button(
+    "Download District Analytics as PDF",
+    pdf_buffer,
+    f"{sector}_{district}_analytics.pdf",
+    mime="application/pdf"
+)

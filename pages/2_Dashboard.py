@@ -2,11 +2,12 @@ import streamlit as st
 import pandas as pd
 from utils.filters import get_filters
 from utils.charts import create_chart
-from utils.export_utils import chart_download_button, export_chart_to_pdf
+from utils.export_utils import chart_download_button
+
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from io import BytesIO
-from PIL import Image
+from reportlab.lib.utils import ImageReader
 
 
 st.set_page_config(
@@ -45,10 +46,8 @@ filtered = df[
 (df.year<=end_year)
 ]
 
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import letter
-from io import BytesIO
-from PIL import Image
+
+# -------- PDF GENERATOR --------
 
 def generate_pdf(fig, sector, state, district, start_year, end_year, metric, avg, mx, mn, trend):
 
@@ -89,18 +88,14 @@ def generate_pdf(fig, sector, state, district, start_year, end_year, metric, avg
 
     img_buffer = BytesIO(img_bytes)
 
-    img = Image.open(img_buffer)
-
-    img_path = "temp_chart.png"
-    img.save(img_path)
-
-    c.drawImage(img_path, 50, height-650, width=500, height=300)
+    c.drawImage(ImageReader(img_buffer), 50, height-650, width=500, height=300)
 
     c.save()
 
     buffer.seek(0)
 
     return buffer
+
 
 # ---------------- DASHBOARD ----------------
 
@@ -112,24 +107,28 @@ if analyze:
 
     col1,col2,col3 = st.columns(3)
 
+    avg = round(filtered[metric].mean(),2)
+    mx = round(filtered[metric].max(),2)
+    mn = round(filtered[metric].min(),2)
+
     col1.markdown(f"""
     <div class="kpi-card">
     <div class="kpi-title">Average</div>
-    <div class="kpi-value">{round(filtered[metric].mean(),2)}</div>
+    <div class="kpi-value">{avg}</div>
     </div>
     """,unsafe_allow_html=True)
 
     col2.markdown(f"""
     <div class="kpi-card">
     <div class="kpi-title">Maximum</div>
-    <div class="kpi-value">{round(filtered[metric].max(),2)}</div>
+    <div class="kpi-value">{mx}</div>
     </div>
     """,unsafe_allow_html=True)
 
     col3.markdown(f"""
     <div class="kpi-card">
     <div class="kpi-title">Minimum</div>
-    <div class="kpi-value">{round(filtered[metric].min(),2)}</div>
+    <div class="kpi-value">{mn}</div>
     </div>
     """,unsafe_allow_html=True)
 
@@ -147,25 +146,23 @@ if analyze:
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # ---------- DOWNLOAD BUTTON ----------
+    # ---------- DOWNLOAD CHART BUTTON ----------
 
     col1,col2,col3 = st.columns([3,1,3])
 
     with col2:
-        chart_download_button(fig)
+        st.download_button(
+        "⬇ Download Chart",
+        fig.to_image(format="png"),
+        f"{metric}_{chart_type}.png",
+        mime="image/png"
+        )
 
-        st.markdown("<br>", unsafe_allow_html=True)
 
     # ---------- INSIGHTS ----------
 
     st.markdown('<div class="insight-card">', unsafe_allow_html=True)
-
     st.subheader("Insights")
-
-    avg = round(filtered[metric].mean(),2)
-    mx = round(filtered[metric].max(),2)
-    mn = round(filtered[metric].min(),2)
-
     st.write(f"Average {metric}: {avg}")
     st.write(f"Maximum {metric}: {mx}")
     st.write(f"Minimum {metric}: {mn}")
@@ -182,9 +179,25 @@ if analyze:
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # ---------- DOWNLOAD PDF ----------
+    # ---------- DOWNLOAD PDF BUTTON ----------
 
-    pdf_buffer = generate_pdf(fig)
-    
+    pdf_buffer = generate_pdf(
+        fig,
+        sector,
+        state,
+        district,
+        start_year,
+        end_year,
+        metric,
+        avg,
+        mx,
+        mn,
+        trend
+    )
 
-    export_chart_to_pdf(pdf_buffer, "Dashboard Chart Report")
+    st.download_button(
+        "⬇ Download Dashboard Report",
+        pdf_buffer,
+        f"{sector}_{state}_{district}_dashboard_report.pdf",
+        mime="application/pdf"
+    )

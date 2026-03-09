@@ -1,3 +1,4 @@
+from numpy import char
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -6,6 +7,7 @@ from prophet import Prophet
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
 from utils.export_utils import chart_download_button, export_chart_to_pdf
+from utils.charts import create_chart
 
 st.set_page_config(page_title="Forecasting", layout="wide")
 
@@ -137,7 +139,12 @@ if analyze:
     # -----------------------------
     chart_image = fig.to_image(format="png")
 
-    chart_download_button(fig)
+    st.download_button(
+        "⬇ Download Chart",
+        fig.to_image(format="png"),
+        f"{metric}_{chart_image}.png",
+        mime="image/png"
+        )
 
 
     st.header("Forecast Table")
@@ -267,4 +274,9 @@ if analyze:
 
     pdf_buffer.seek(0)
 
-    export_chart_to_pdf(pdf_buffer, "Forecast Report")
+    st.download_button(
+    "Download Forecast Report as PDF",
+    pdf_buffer,
+    f"{sector}_{forecast_level}_forecast.pdf",
+    mime="application/pdf"
+)

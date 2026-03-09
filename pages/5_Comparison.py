@@ -85,7 +85,13 @@ if analyze:
 
 
     # Download chart
-    chart_download_button(fig_state)
+    st.download_button(
+    "⬇ Download State Chart",
+    fig_state.to_image(format="png"),
+    f"{metric}_state_comparison.png",
+    mime="image/png",
+    key="download_state_chart"
+)
 
     # -------- Comparison Table --------
 
@@ -146,7 +152,13 @@ if analyze:
 
     st.plotly_chart(fig_district,use_container_width=True)
 
-    chart_download_button(fig_district)
+    st.download_button(
+    "⬇ Download District Chart",
+    fig_district.to_image(format="png"),
+    f"{metric}_district_comparison.png",
+    mime="image/png",
+    key="download_district_chart"
+)
 # -------- Comparison Table --------
 
     st.header("Comparison Table")
@@ -248,6 +260,12 @@ if analyze:
 
     c.save()
 
-    pdf_buffer.seek(0)
+    st.download_button(
+    "⬇ Download Comparison Report as PDF",
+    pdf_buffer,
+    f"{sector}_comparison_report.pdf",
+    mime="application/pdf",
+    key="download_comparison_pdf"
+)
 
-    export_chart_to_pdf(pdf_buffer, "Comparison Report")
+    

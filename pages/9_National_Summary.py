@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import io
+from reportlab.pdfgen import canvas
+from reportlab.lib.utils import ImageReader
 from utils.export_utils import chart_download_button, export_chart_to_pdf
 
 st.set_page_config(page_title="National Summary", layout="wide")
@@ -394,4 +397,9 @@ c.save()
 
 pdf_buffer.seek(0)
 
-export_chart_to_pdf(pdf_buffer, "National Summary Report")
+st.download_button(
+    "Download National Summary as PDF",
+    pdf_buffer,
+    f"{sector}_national_summary.pdf",
+    mime="application/pdf"
+)

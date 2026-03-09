@@ -251,4 +251,9 @@ if analyze:
 
     pdf_buffer.seek(0)
 
-    export_chart_to_pdf(pdf_buffer, "State Analytics Report")
+    st.download_button(
+    "Download State Analytics as PDF",
+    pdf_buffer,
+    f"{sector}_{state}_analytics.pdf",
+    mime="application/pdf"
+)
