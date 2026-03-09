@@ -1,3 +1,5 @@
+import os
+
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -25,7 +27,7 @@ st.write("How can I help you analyze your data?")
 # GROQ CLIENT
 # -----------------------
 
-client = Groq(api_key=st.secrets["GROQ_API_KEY"])
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 # -----------------------
 # FILE UPLOAD

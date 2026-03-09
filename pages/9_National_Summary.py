@@ -4,7 +4,7 @@ import plotly.express as px
 import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
-from utils.export_utils import chart_download_button, export_chart_to_pdf
+
 
 st.set_page_config(page_title="National Summary", layout="wide")
 
@@ -401,5 +401,6 @@ st.download_button(
     "Download National Summary as PDF",
     pdf_buffer,
     f"{sector}_national_summary.pdf",
-    mime="application/pdf"
+    mime="application/pdf",
+    key="download_pdf"
 )

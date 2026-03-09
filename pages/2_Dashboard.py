@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from utils.filters import get_filters
 from utils.charts import create_chart
-from utils.export_utils import chart_download_button
+
 
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
@@ -155,7 +155,8 @@ if analyze:
         "⬇ Download Chart",
         fig.to_image(format="png"),
         f"{metric}_{chart_type}.png",
-        mime="image/png"
+        mime="image/png",
+        key="download_chart"
         )
 
 
@@ -199,5 +200,6 @@ if analyze:
         "⬇ Download Dashboard Report",
         pdf_buffer,
         f"{sector}_{state}_{district}_dashboard_report.pdf",
-        mime="application/pdf"
+        mime="application/pdf",
+        key="download_pdf"
     )

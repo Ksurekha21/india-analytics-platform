@@ -5,7 +5,7 @@ import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
 from utils.filters import get_filters
-from utils.export_utils import chart_download_button, export_chart_to_pdf
+
 
 st.set_page_config(page_title="Comparison", layout="wide")
 with open("assets/style.css") as f:

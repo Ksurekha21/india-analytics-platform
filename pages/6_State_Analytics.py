@@ -4,7 +4,6 @@ import plotly.express as px
 import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
-from utils.export_utils import chart_download_button, export_chart_to_pdf
 
 from utils.filters import get_filters
 
@@ -255,5 +254,6 @@ if analyze:
     "Download State Analytics as PDF",
     pdf_buffer,
     f"{sector}_{state}_analytics.pdf",
-    mime="application/pdf"
+    mime="application/pdf",
+    key="download_pdf"
 )
