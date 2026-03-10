@@ -25,7 +25,11 @@ if sector is None:
         st.switch_page("pages/1_Sectors.py")
     st.stop()
 
-df = pd.read_csv(f"data/{sector}.csv")
+@st.cache_data
+def load_data(sector):
+    return pd.read_csv(f"data/{sector}.csv")
+
+df = load_data(sector)
 
 # -----------------------------
 # SIDEBAR FILTERS

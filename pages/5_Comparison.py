@@ -21,7 +21,11 @@ if sector is None:
     st.stop()
 
 # -------- Load Data --------
-df = pd.read_csv(f"data/{sector}.csv")
+@st.cache_data
+def load_data(sector):
+    return pd.read_csv(f"data/{sector}.csv")
+
+df = load_data(sector)
 
 # -------- Filters --------
 state,district,start_year,end_year,metric,chart_type,analyze = get_filters(

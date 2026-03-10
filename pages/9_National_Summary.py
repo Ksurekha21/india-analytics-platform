@@ -27,7 +27,11 @@ if sector is None:
 # LOAD DATA
 # -----------------------------
 
-df = pd.read_csv(f"data/{sector}.csv")
+@st.cache_data
+def load_data(sector):
+    return pd.read_csv(f"data/{sector}.csv")
+
+df = load_data(sector)
 
 st.title("National Summary Dashboard")
 
