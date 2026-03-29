@@ -10,3 +10,4 @@ pillow
 python-docx
 openpyxl
 kaleido
+prophet

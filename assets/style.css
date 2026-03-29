@@ -1,7 +1,7 @@
 /* ---------- APP BACKGROUND ---------- */
 
 [data-testid="stAppViewContainer"]{
-background:#f4f6f9;
+background: var(--background-color);
 }
 
 
@@ -10,14 +10,14 @@ background:#f4f6f9;
 /* SIDEBAR BACKGROUND */
 
 [data-testid="stSidebar"]{
-    background: #f8fafc;
+    background: var(--secondary-background-color);
 }
 
 
 /* FILTER TITLE */
 
 [data-testid="stSidebar"] h2{
-    color:#1e293b;
+    color: var(--text-color);
     font-weight:600;
 }
 
@@ -25,7 +25,7 @@ background:#f4f6f9;
 /* LABELS */
 
 [data-testid="stSidebar"] label{
-    color:#334155 !important;
+    color: var(--text-color) !important;
     font-size:14px;
 }
 
@@ -33,9 +33,9 @@ background:#f4f6f9;
 /* INPUT BOXES */
 
 [data-testid="stSidebar"] .stSelectbox div{
-    background:white;
+    background: var(--background-color);
     border-radius:8px;
-    border:1px solid #e2e8f0;
+    border:1px solid rgba(128,128,128,0.2);
 }
 
 
@@ -57,86 +57,73 @@ background:#f4f6f9;
 /* ---------- KPI CARDS ---------- */
 
 .kpi-card{
-background:white;
+background: var(--secondary-background-color);
 padding:25px;
 border-radius:12px;
 text-align:center;
-box-shadow:0px 3px 12px rgba(0,0,0,0.08);
+box-shadow:0px 3px 12px rgba(0,0,0,0.1);
 }
 
 .kpi-title{
 font-size:16px;
-color:#6b7280;
+color: var(--text-color);
+opacity: 0.8;
 }
 
 .kpi-value{
 font-size:28px;
 font-weight:600;
-color:#111827;
+color: var(--text-color);
 }
 
 
 /* ---------- CHART CARD ---------- */
 
 .chart-card{
-background:white;
+background: var(--secondary-background-color);
 padding:20px;
 border-radius:12px;
-box-shadow:0px 3px 12px rgba(0,0,0,0.08);
+box-shadow:0px 3px 12px rgba(0,0,0,0.1);
 margin-top:15px;
+color: var(--text-color);
 }
 
 
 /* ---------- INSIGHTS CARD ---------- */
 
 .insight-card{
-background:white;
+background: var(--secondary-background-color);
 padding:20px;
 border-radius:12px;
-box-shadow:0px 3px 12px rgba(0,0,0,0.08);
+box-shadow:0px 3px 12px rgba(0,0,0,0.1);
 margin-top:20px;
+color: var(--text-color);
 }
+
 /* Hide Streamlit default pages navigation */
 
 /* sector buttons */
 
 .stButton button{
-height:60px;
-font-size:16px;
+background: var(--secondary-background-color);
+border:1px solid rgba(128,128,128,0.3);
 border-radius:10px;
-border:1px solid #d1d5db;
-background:white;
-transition:0.2s;
-}
-
-.stButton button:hover{
-background:#f3f4f6;
-border-color:#9ca3af;
-}
-.stButton button{
-
-background:white;
-border:1px solid #d1d5db;
-border-radius:10px;
-
 height:45px;
-
 font-size:16px;
-
+color: var(--text-color);
 transition:0.2s;
 }
 
 .stButton button:hover{
-
-background:#f3f4f6;
-border-color:#9ca3af;
-
+background: var(--background-color);
+border-color: rgba(128,128,128,0.6);
 }
+
 /* REMOVE BLUE BUTTON STYLE */
 
 [data-testid="stSidebar"] .stButton button{
     background: transparent;
-    color: #1f2937;
+    color: var(--text-color);
     border: none;
     text-align: left;
     width: 100%;
@@ -149,6 +136,6 @@ border-color:#9ca3af;
 /* HOVER EFFECT */
 
 [data-testid="stSidebar"] .stButton button:hover{
-    background: #f1f5f9;
-    color: #111827;
+    background: rgba(128,128,128,0.1);
+    color: var(--text-color);
 }
